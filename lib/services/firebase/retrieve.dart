@@ -36,8 +36,7 @@ class FireDocument<T extends FireModel> {
   /// You can set the [streamSource] to specify the source to listen for document changes.
   /// The default value for [streamSource] is [ListenSource.defaultSource].
   /// You can set it to [ListenSource.cache] to only listen for local changes.
-  FireDocument(this.ref, this.type,
-      {this.streamSource = ListenSource.defaultSource, this.dataOptions});
+  FireDocument(this.ref, this.type, {this.streamSource = ListenSource.defaultSource, this.dataOptions});
 
   /// Converts a [DocumentSnapshot] to an instance of [T].
   T _snapAsT(DocumentSnapshot snap) => type.toModel(snap.dataAsMap, snap.reference) as T;
@@ -48,8 +47,7 @@ class FireDocument<T extends FireModel> {
 
   /// Retrieves the document data from Firestore and returns it as an instance of [T].
   /// If the document doesn't exist it will return `null`.
-  Future<T?> get dataOrNull =>
-      ref.get(dataOptions).then((snap) => snap.exists ? _snapAsT(snap) : null);
+  Future<T?> get dataOrNull => ref.get(dataOptions).then((snap) => snap.exists ? _snapAsT(snap) : null);
 
   /// Listens to changes in the document data and emits an instance of [T] whenever the data changes.
   /// If the document doesn't exist it will emit the default instance of [T].
@@ -57,9 +55,7 @@ class FireDocument<T extends FireModel> {
 
   /// Listens to changes in the document data and emits an instance of [T].
   /// If the document doesn't exist it will emit `null`.
-  Stream<T?> get streamOrNull => ref
-      .snapshots(source: streamSource)
-      .map((snap) => snap.exists ? _snapAsT(snap) : null);
+  Stream<T?> get streamOrNull => ref.snapshots(source: streamSource).map((snap) => snap.exists ? _snapAsT(snap) : null);
 
   /// Created or updates the document data on Firestore using the method [toMap] from the instance of [T].
   /// It uses the method [set] from Firestore with the option [SetOptions(merge: true)].
@@ -103,8 +99,7 @@ class FireCollection<T extends FireModel> {
   /// You can set the [streamSource] to specify the source to listen for document changes.
   /// The default value for [streamSource] is [ListenSource.defaultSource].
   /// You can set it to [ListenSource.cache] to only listen for local changes.
-  FireCollection(this.query, this.instance,
-      {this.streamSource = ListenSource.defaultSource, this.dataOptions});
+  FireCollection(this.query, this.instance, {this.streamSource = ListenSource.defaultSource, this.dataOptions});
 
   /// Converts a [QuerySnapshot] to an instance of [List<T>].
   List<T> _snapsAsListT(QuerySnapshot<Object?> snaps) =>
@@ -126,12 +121,11 @@ class FireCollection<T extends FireModel> {
 
   /// Retrieves the data from Firestore as a stream of lists of objects of type [T].
   /// If the collection is empty it will return an empty list.
-  Stream<List<T>> get stream =>
-      query.snapshots(source: streamSource).map(_snapsAsListT);
+  Stream<List<T>> get stream => query.snapshots(source: streamSource).map(_snapsAsListT);
 
   /// Retrieves the data from Firestore as a stream of lists of objects of type [T].
   /// If the collection is empty it will return `null`.
-  Stream<List<T>?> get streamOrNull =>
-      query.snapshots(source: streamSource).map((snapshots) =>
-          snapshots.docs.isEmpty ? null : _snapsAsListT(snapshots));
+  Stream<List<T>?> get streamOrNull => query
+      .snapshots(source: streamSource)
+      .map((snapshots) => snapshots.docs.isEmpty ? null : _snapsAsListT(snapshots));
 }

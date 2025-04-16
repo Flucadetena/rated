@@ -38,10 +38,9 @@ class RankingsDetails extends GetxController {
 
   _listenToRankings() {
     _subRankings?.cancel();
-    _subRankings = FireCollection(
-      refCollUserRankings(AuthDetails.currentUser!.uid),
-      Ranking(),
-    ).stream.listen((newRankings) {
+    _subRankings = FireCollection(refCollUserRankings(AuthDetails.currentUser!.uid), Ranking()).stream.listen((
+      newRankings,
+    ) {
       rankings = newRankings.sortedByUpdated;
       update();
     });

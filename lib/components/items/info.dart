@@ -9,12 +9,11 @@ class ItemExtraInfo extends StatelessWidget {
     return RichText(
       text: TextSpan(
         children: [
-          TextSpan(text: '${info.key}: ', style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold)
-          ),
           TextSpan(
-            text: info.value,
-            style: Theme.of(context).textTheme.bodyLarge,
+            text: '${info.key}: ',
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
           ),
+          TextSpan(text: info.value, style: Theme.of(context).textTheme.bodyLarge),
         ],
       ),
     );

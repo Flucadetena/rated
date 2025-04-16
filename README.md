@@ -1,7 +1,7 @@
 # LABHOUSE - TEST - FERNANDO LUCA DE TENA
 
 
-1.- Para hacer funcionar la app solo hay que correr en el terminal la configuracion de Firebase una vez que se tenga acceso a el.
+1.- Para hacer funcionar la app solo hay que correr en el terminal la configuracion de Firebase una vez que se tenga acceso a el.  
 2.- Seguir las instrucciones y dar enter a todo. Solo hay que configurar android.
 
 ## Comando:

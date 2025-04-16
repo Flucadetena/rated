@@ -25,5 +25,5 @@ abstract class FireModel {
   /// to create a new instance with data.
   /// This is useful when we need to reuse the same method for different types.
   /// For example when retrieving documents from Firestore. As implemented in [FireDocument] class.
-  FireModel toModel(Map<String, Object?> data, DocumentReference? ref) ;
+  FireModel toModel(Map<String, Object?> data, DocumentReference? ref);
 }

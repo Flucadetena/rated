@@ -15,7 +15,10 @@ class FavoritesDetails extends GetxController {
 
   _getItems() async {
     items =
-        (await FireCollection(refCollGroupRankingItems(AuthDetails.currentUser!.uid).where('saved', isNull: false), RankingItem()).data)
+        (await FireCollection(
+              refCollGroupRankingItems(AuthDetails.currentUser!.uid).where('saved', isNull: false),
+              RankingItem(),
+            ).data)
             .sortedByPosition;
     update();
   }
